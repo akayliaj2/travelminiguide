@@ -1,0 +1,312 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2022.7">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  </style>
+</head>
+<body>
+<p class="p1">&lt;html lang="en"&gt;&lt;head&gt;&lt;script&gt;(function(firebaseConfig, initialAuthToken, appId) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>window.__firebase_config = firebaseConfig;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>window.__initial_auth_token = initialAuthToken;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>window.__app_id = appId;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>})("\n{\n<span class="Apple-converted-space">  </span>\"apiKey\": \"AIzaSyCqyCcs2R2e7AegGjvFAwG98wlamtbHvZY\",\n<span class="Apple-converted-space">  </span>\"authDomain\": \"bard-frontend.firebaseapp.com\",\n<span class="Apple-converted-space">  </span>\"projectId\": \"bard-frontend\",\n<span class="Apple-converted-space">  </span>\"storageBucket\": \"bard-frontend.firebasestorage.app\",\n<span class="Apple-converted-space">  </span>\"messagingSenderId\": \"175205271074\",\n<span class="Apple-converted-space">  </span>\"appId\": \"1:175205271074:web:2b7bd4d34d33bf38e6ec7b\"\n}\n","eyJhbGciOiJSUzI1NiIsImtpZCI6IjNmZGRhYjhmMWJhNjVjMzczMDFhMWQwNWU3YjBjYjM3Y2Y5MWEwNTgiLCJ0eXAiOiJKV1QifQ.eyJzdWIiOiJmaXJlYmFzZS1hZG1pbnNkay1mYnN2Y0BiYXJkLWZyb250ZW5kLmlhbS5nc2VydmljZWFjY291bnQuY29tIiwiYXVkIjoiaHR0cHM6XC9cL2lkZW50aXR5dG9vbGtpdC5nb29nbGVhcGlzLmNvbVwvZ29vZ2xlLmlkZW50aXR5LmlkZW50aXR5dG9vbGtpdC52MS5JZGVudGl0eVRvb2xraXQiLCJ1aWQiOiIxNjEyMDE2OTc5MTA3OTc0NjQwOSIsImlzcyI6ImZpcmViYXNlLWFkbWluc2RrLWZic3ZjQGJhcmQtZnJvbnRlbmQuaWFtLmdzZXJ2aWNlYWNjb3VudC5jb20iLCJleHAiOjE3NDc3NjQ5MzksImlhdCI6MTc0Nzc2MTMzOSwiYWxnIjoiUlMyNTYifQ.qimjHfy6XH7kfPG-GjgCOet-x83IaFsQF8ZxN-jJr-yLN4FdWHs3QfupFAsqQ-Y8p7qg3mHRpHkA6anl6t3PYDntJermg87DvL1sLJ5XSzDcS-3UUMgSc9fURLiviC_X3ICCTTIBxZs-AsdnoRQGC6vuwDFCAoyVFgHhnB0eBbSgMiiquErBk6QBOv8_k0tmbC3EY3Y6SQIlsrPIbZEtDmqvKXGV-WNYMO8jYuxPV-lB98YS2Pq6J8pxMmcXCNyNM00dCdcbGilMQ4r5SROmoFAAl3RJ3ibVDZWGCeSuTTmTr-AZUZmzqgJ61d4EVa6sVO75if9vfPmGf01yIymi7w","c_c1627d1cde2bd088_thailand_travel_guide_html-649")&lt;/script&gt;&lt;script&gt;(function() {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>// Ensure this script is executed only once</p>
+<p class="p1"><span class="Apple-converted-space">  </span>if (window.firebaseAuthBridgeScriptLoaded) {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>return;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>window.firebaseAuthBridgeScriptLoaded = true;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>let nextTokenPromiseId = 0;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>// Stores { resolve, reject } for ongoing token requests</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const pendingTokenPromises = {};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>// Listen for messages from the Host Application</p>
+<p class="p1"><span class="Apple-converted-space">  </span>window.addEventListener('message', function(event) {</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>const messageData = event.data;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>if (messageData &amp;&amp; messageData.type === 'RESOLVE_NEW_FIREBASE_TOKEN') {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const { success, token, error, promiseId } = messageData ?? {};</p>
+<p class="p1"><span class="Apple-converted-space">      </span>if (pendingTokenPromises[promiseId]) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (success) {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>pendingTokenPromises[promiseId].resolve(token);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>pendingTokenPromises[promiseId].reject(new Error(error || 'Token refresh failed from host.'));</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>delete pendingTokenPromises[promiseId];</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>// Expose a function for the Generated App to request a new Firebase token</p>
+<p class="p1"><span class="Apple-converted-space">  </span>window.requestNewFirebaseToken = function() {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const currentPromiseId = nextTokenPromiseId++;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const promise = new Promise((resolve, reject) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>pendingTokenPromises[currentPromiseId] = { resolve, reject };</p>
+<p class="p1"><span class="Apple-converted-space">    </span>});</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (window.parent &amp;&amp; window.parent !== window) {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>window.parent.postMessage({</p>
+<p class="p1"><span class="Apple-converted-space">        </span>type: 'REQUEST_NEW_FIREBASE_TOKEN',</p>
+<p class="p1"><span class="Apple-converted-space">        </span>promiseId: currentPromiseId</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}, '*');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>pendingTokenPromises[currentPromiseId].reject(new Error('No parent window to request token from.'));</p>
+<p class="p1"><span class="Apple-converted-space">      </span>delete pendingTokenPromises[currentPromiseId];</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>return promise;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>};</p>
+<p class="p1">})();&lt;/script&gt;&lt;script&gt;let realOriginalGetUserMedia = null;</p>
+<p class="p1">if (navigator.mediaDevices &amp;&amp; navigator.mediaDevices.getUserMedia) {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>realOriginalGetUserMedia = navigator.mediaDevices.getUserMedia.bind(navigator.mediaDevices);</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">(function() {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>if (navigator.mediaDevices &amp;&amp; navigator.mediaDevices.__proto__) {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>try {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>Object.defineProperty(navigator.mediaDevices.__proto__, 'getUserMedia', {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>get: function() {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>return undefined; // Or throw an error</p>
+<p class="p1"><span class="Apple-converted-space">        </span>},</p>
+<p class="p1"><span class="Apple-converted-space">        </span>configurable: false</p>
+<p class="p1"><span class="Apple-converted-space">      </span>});</p>
+<p class="p1"><span class="Apple-converted-space">    </span>} catch (error) {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>console.error("Error defining prototype getter:", error);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}</p>
+<p class="p1">})();</p>
+<p class="p2"><br></p>
+<p class="p1">(function() {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>let originalGetUserMedia = realOriginalGetUserMedia;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>const pendingMediaResolvers = {};</p>
+<p class="p1"><span class="Apple-converted-space">  </span>let nextMediaPromiseId = 0;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>function interceptGetUserMedia() {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (navigator.mediaDevices) {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>Object.defineProperty(navigator.mediaDevices, 'getUserMedia', {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>value: function(constraints) {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>const mediaPromiseId = nextMediaPromiseId++;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>const promise = new Promise((resolve, reject) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>pendingMediaResolvers[mediaPromiseId] = (granted) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">              </span>delete pendingMediaResolvers[mediaPromiseId];</p>
+<p class="p1"><span class="Apple-converted-space">              </span>if (granted) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (originalGetUserMedia) {</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>originalGetUserMedia(constraints).then(resolve).catch(reject);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>reject(new Error("Original getUserMedia not available."));</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">              </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">              </span>reject(new DOMException('Permission denied', 'NotAllowedError'));</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">          </span>};</p>
+<p class="p1"><span class="Apple-converted-space">        </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>window.parent.postMessage({</p>
+<p class="p1"><span class="Apple-converted-space">          </span>type: 'requestMediaPermission',</p>
+<p class="p1"><span class="Apple-converted-space">          </span>constraints: constraints,</p>
+<p class="p1"><span class="Apple-converted-space">          </span>promiseId: mediaPromiseId,</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}, '*');</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>return promise;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>},</p>
+<p class="p1"><span class="Apple-converted-space">      </span>writable: false,</p>
+<p class="p1"><span class="Apple-converted-space">      </span>configurable: false</p>
+<p class="p1"><span class="Apple-converted-space">    </span>});</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>interceptGetUserMedia();</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>const observer = new MutationObserver(function(mutationsList, observer) {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>for (const mutation of mutationsList) {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>if (mutation.type === 'reconfigured' &amp;&amp; mutation.name === 'getUserMedia' &amp;&amp; mutation.object === navigator.mediaDevices) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>interceptGetUserMedia();</p>
+<p class="p1"><span class="Apple-converted-space">      </span>} else if (mutation.type === 'attributes' &amp;&amp; mutation.attributeName === 'getUserMedia' &amp;&amp; mutation.target === navigator.mediaDevices) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>interceptGetUserMedia();</p>
+<p class="p1"><span class="Apple-converted-space">      </span>} else if (mutation.type === 'childList' &amp;&amp; mutation.addedNodes) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>mutation.addedNodes.forEach(node =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>if (node === navigator.mediaDevices) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>interceptGetUserMedia();</p>
+<p class="p1"><span class="Apple-converted-space">          </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>});</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>window.addEventListener('message', function(event) {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (event.data) {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>if (event.data.type === 'resolveMediaPermission') {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const { promiseId, granted } = event.data;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (pendingMediaResolvers[promiseId]) {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>pendingMediaResolvers[promiseId](granted);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>});</p>
+<p class="p2"><br></p>
+<p class="p1">})();&lt;/script&gt;&lt;script&gt;(function() {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const originalConsoleLog = console.log;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const originalConsoleError = console.error;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>function stringifyArgs(args) {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>return args</p>
+<p class="p1"><span class="Apple-converted-space">      </span>.map((arg) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (typeof arg === 'object') {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>try {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>return JSON.stringify(arg);</p>
+<p class="p1"><span class="Apple-converted-space">          </span>} catch (error) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>return '[Circular Object]';</p>
+<p class="p1"><span class="Apple-converted-space">          </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>return String(arg);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>})</p>
+<p class="p1"><span class="Apple-converted-space">      </span>.join(' ');</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>console.log = function(...args) {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const logString = stringifyArgs(args);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>window.parent.postMessage({ type: 'log', message: logString }, '*');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>originalConsoleLog.apply(console, args);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>console.error = function(...args) {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const errorString = stringifyArgs(args);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>window.parent.postMessage({ type: 'error', message: errorString }, '*');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>originalConsoleError.apply(console, args);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>window.addEventListener('error', function(event) {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const errorString = event.message + ' (' + event.filename + ':' + event.lineno + ':' + event.colno + ') ' + (event.error ? event.error.stack : '');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>window.parent.postMessage({ type: 'error', message: errorString }, '*');</p>
+<p class="p1"><span class="Apple-converted-space">  </span>});</p>
+<p class="p2"><br></p>
+<p class="p1">})();&lt;/script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta charset="UTF-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;title&gt;Thailand Travel Guide&lt;/title&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;amp;display=swap" rel="stylesheet"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;style&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>body {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-family: 'Inter', sans-serif;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin: 0;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 0;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #e0f7fa; /* Light green */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%2381c784' fill-opacity='0.4' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E"); /* Green polka dots */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: #333;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>line-height: 1.6;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.container {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>max-width: 800px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin: 20px auto;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 20px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent white */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 10px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>h1 {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: #00897b; /* A darker shade of green */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>text-align: center;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 20px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>h2 {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: #00897b; /* A darker shade of green */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-top: 30px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 10px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-bottom: 2px solid #81c784; /* Light green border */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding-bottom: 5px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>ul {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>list-style-type: disc;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-left: 20px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 20px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>li {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 10px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.top-destinations {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: grid;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));</p>
+<p class="p1"><span class="Apple-converted-space">            </span>gap: 20px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-top: 20px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.destination-card {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: rgba(255, 255, 255, 0.95); /* Slightly more opaque white */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 10px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 15px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transition: transform 0.3s ease;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: flex; /* Use flexbox for vertical alignment */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>flex-direction: column;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>overflow: hidden; /* to hide the overflowed part of the image */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.destination-card:hover {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transform: translateY(-5px);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.destination-card h3 {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: #008000; /* A different shade of green */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 10px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>text-align: center; /* Center the heading */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.destination-card p {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 0;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>text-align: center; /* Center the paragraph */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.destination-card img {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>width: 100%;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>height: 200px; /* Fixed height for the images */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>object-fit: cover; /* Maintain aspect ratio and cover the container */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 5px; /* Add some border-radius to the images */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 10px; /* Add some margin below the image */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/style&gt;</p>
+<p class="p1">&lt;/head&gt;</p>
+<p class="p1">&lt;body&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="container"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;h1&gt;Thailand Travel Guide&lt;/h1&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;h2&gt;Fun Facts About Thailand&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;ul&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;li&gt;Thailand, once known as Siam, invites you to discover its rich heritage.&lt;/li&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;li&gt;A land of independence, it's the only Southeast Asian nation to remain uncolonized.&lt;/li&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;li&gt;The "Land of Smiles" welcomes you with genuine warmth and hospitality.&lt;/li&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;li&gt;Prepare to be amazed by Bangkok's lengthy and captivating ceremonial name.&lt;/li&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;li&gt;A world leader in orchids, Thailand celebrates the beauty of nature.&lt;/li&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;li&gt;Elephants, the nation's cherished symbol, especially the revered white elephant, hold a special place in Thai culture.&lt;/li&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/ul&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;h2&gt;Top 3 Must-See Places in Thailand&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="top-destinations"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="destination-card"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;img src="https://res-1.cloudinary.com/gorealtravel/image/upload/v1563889832/production/marketing/city/5d3181c870428e0008e0845c/city_main_image/BANGKOK.jpg" alt="Bangkok"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;a href="https://www.britannica.com/place/Bangkok"&gt;&lt;h3&gt;Bangkok&lt;/h3&gt;&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;p&gt;Dive into Bangkok, a vibrant metropolis where ancient temples meet modern marvels, and bustling markets overflow with exotic treasures.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="destination-card"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;img src="https://img.hostelworldblog.com/blog/wp-content/uploads/2024/09/dreamstime_xxl_28627798-scaled.jpg" alt="Chiang Mai"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">               </span>&lt;a href="https://www.britannica.com/place/Chiang-Mai"&gt;&lt;h3&gt;Chiang Mai&lt;/h3&gt;&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;p&gt;Discover Chiang Mai, a cultural gem cradled in the northern mountains, where serene temples and lush landscapes enchant every visitor.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="destination-card"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;img src="https://ik.imgkit.net/3vlqs5axxjf/external/http://images.ntmllc.com/v4/destination/Thailand/Phuket-City/220668_SCN_Phuket_iStock910551026_Z20B18.jpg?tr=w-1200%2Cfo-auto" alt="Phuket"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;a href="https://www.britannica.com/place/Phuket-Island"&gt;&lt;h3&gt;Phuket&lt;/h3&gt;&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;p&gt;Escape to Phuket, an island paradise where stunning beaches, thrilling nightlife, and endless adventures await under the tropical sun.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p2"><br></p>
+<p class="p1">&lt;/body&gt;&lt;/html&gt;</p>
+</body>
+</html>
